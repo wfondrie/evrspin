@@ -2,11 +2,42 @@
 % Please edit documentation in R/rotor.R
 \name{rotor}
 \alias{rotor}
-\title{Rotor class constructors}
+\title{Create a rotor object}
 \usage{
-rotor(type = "FA", maxRadius, minRadius, sedLength, model = "custom")
+rotor(model = "custom", type = "SW", R.min, R.max, FA.angle, FA.diameter)
+}
+\arguments{
+\item{model}{custom or pre-specified rotor. 
+Setting model to "custom" allows use of the other parameters. See details for
+other model choices.}
+
+\item{type}{Swinging-bucket ("SW") or fixed-angle ("FA").}
+
+\item{R.min}{The minimum radius of the rotor in mm.}
+
+\item{R.max}{The maximum radius of the rotor in mm.}
+
+\item{FA.angle}{The tube angle in degrees for fixed-angle rotors. Necessary to calculate
+the sedimentation path length.}
+
+\item{FA.diameter}{The tube diameter in mm for fixed-angle rotors. Necessary to 
+calculate the sedimentation path length.}
 }
 \description{
-Rotor class constructors
+Constructor function to create new rotor class objects.
+}
+\details{
+Rotor objects are lists that contain the physical parameters of specific
+rotors. The \code{rotor()} function creates a new rotor object that for use with other evrspin
+functions. 
+
+While a user may specify parameters individually using \code{model = "custom"}, there
+are a number of pre-specified rotors that can be selected through the \code{model} parameter. 
+Note that if \code{model != "custom"}, all other parameters are ignored.
+
+\bold{Supported Models:}
+\itemize{
+     \item Beckman SW 41 Ti ("SW 41")
+}
 }
 
