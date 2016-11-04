@@ -34,7 +34,9 @@
 #'
 #'
 
-# TODO: Add more rotors
+# TODO:
+# - Add more rotors
+# - Add argument checks
 
 rotor <- function(model = "custom",
                   type = "sw",
