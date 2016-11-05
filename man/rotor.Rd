@@ -4,14 +4,14 @@
 \alias{rotor}
 \title{Create a rotor object}
 \usage{
-rotor(model = "custom", type = "SW", R.min, R.max, FA.angle, FA.diameter)
+rotor(model = "custom", type = "sw", R.min, R.max, FA.angle, FA.diameter)
 }
 \arguments{
-\item{model}{custom or pre-specified rotor. 
+\item{model}{custom or pre-specified rotor.
 Setting model to "custom" allows use of the other parameters. See details for
 other model choices.}
 
-\item{type}{Swinging-bucket ("SW") or fixed-angle ("FA").}
+\item{type}{Swinging-bucket ("sw") or fixed-angle ("fa").}
 
 \item{R.min}{The minimum radius of the rotor in mm.}
 
@@ -20,7 +20,7 @@ other model choices.}
 \item{FA.angle}{The tube angle in degrees for fixed-angle rotors. Necessary to calculate
 the sedimentation path length.}
 
-\item{FA.diameter}{The tube diameter in mm for fixed-angle rotors. Necessary to 
+\item{FA.diameter}{The tube diameter in mm for fixed-angle rotors. Necessary to
 calculate the sedimentation path length.}
 }
 \description{
@@ -28,16 +28,16 @@ Constructor function to create new rotor class objects.
 }
 \details{
 Rotor objects are lists that contain the physical parameters of specific
-rotors. The \code{rotor()} function creates a new rotor object that for use with other evrspin
-functions. 
+rotors. The \code{rotor()} function creates a new rotor object for use with other evrspin
+functions.
 
 While a user may specify parameters individually using \code{model = "custom"}, there
-are a number of pre-specified rotors that can be selected through the \code{model} parameter. 
+are a number of pre-specified rotors that can be selected through the \code{model} parameter.
 Note that if \code{model != "custom"}, all other parameters are ignored.
 
 \bold{Supported Models:}
 \itemize{
-     \item Beckman SW 41 Ti ("SW 41")
+     \item Beckman SW 41 Ti ("sw41")
 }
 }
 
