@@ -10,7 +10,7 @@ sed_time(d, rcf, rotor, vesicle.density = 1.15, solvent.density = 1,
 \arguments{
 \item{d}{vesicle diameter (nm)}
 
-\item{rcf}{relative centrifugal force (g)}
+\item{rcf}{relative centrifugal force (x g)}
 
 \item{rotor}{a rotor object}
 
