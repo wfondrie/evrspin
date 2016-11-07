@@ -47,9 +47,6 @@
 #' rotor(model = "sw40", type = "fa", R.min = 10, R.max = 15, FA.angle = 30, FA.diameter = 10)
 #' 
 
-# TODO:
-# - Add examples
-
 rotor <- function(model = "custom",
                   type = "sw",
                   R.min,

@@ -2,19 +2,40 @@
 % Please edit documentation in R/conversion.R
 \name{rcf2rpm}
 \alias{rcf2rpm}
-\title{RCF Conversion}
+\alias{rpm2rcf}
+\title{RCF and RPM Conversions}
 \usage{
 rcf2rpm(rcf, rotor)
+
+rpm2rcf(rpm, rotor)
 }
 \arguments{
-\item{rcf}{relative centrifugal force in x g}
+\item{rcf}{relative centrifugal force}
 
 \item{rotor}{a rotor object}
+
+\item{rpm}{revolutions per minute}
 }
 \value{
-rotor velocity in rotations-per-minute (RPM)
+\code{rcf2rpm} returns the rpm equilavent to the specified rotor and 
+rcf. Likewise, \code{rpm2rcf} returns the rcf for the specified rotor and rpm.
 }
 \description{
-Converts RCF to RPM for a given rotor.
+Convert RCF to RPM, or vice versa, for a given rotor.
+}
+\section{Warning}{
+ Check your owner's manual for the maximum rpm and rcf
+ratings of your rotor before proceeding.
+}
+\examples{
+# Create a Beckman SW 40 Ti rotor object
+sw40 <- rotor(model = "sw40")
+
+# Calculate the rpm needed for 10,000 x g
+rcf2rpm(10000, sw40)
+
+# Calculate the rcf for an SW 40 Ti rotor spinning at 1,000 rpm
+rpm2rcf(1000, sw40)
+
 }
 

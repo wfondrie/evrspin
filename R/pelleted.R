@@ -6,7 +6,7 @@
 #' 
 #' @param t time (s)
 #' @param d vesicle diameter (nm)
-#' @param rcf relative centrifugal force (x g)
+#' @param rcf relative centrifugal force
 #' @param rotor a rotor object
 #' @param vesicle.density the vesicle density (g/cm^3)
 #' @param solvent.density the solvent density (g/cm^3)
@@ -37,6 +37,7 @@ pelleted <- function(t,
     rho <- vesicle.density - solvent.density
     rMax <- rotor[["R.max"]]
     rMin <- rotor[["R.min"]]
+    L <- rotor[["sed.L"]]
     
     switch(rotor[["type"]],
            
@@ -44,7 +45,7 @@ pelleted <- function(t,
            sw = {
                w2 <- (2 * rcf) / (rMax + rMin) * 9800
                lambda <- (w2 * (10^-7 * d)^2 * rho) / (18 * viscosity)
-               result <- rMax / (rMax - rMin) * (1 - exp(-lambda * (t * 60)))
+               result <- rMax / L * (1 - exp(-lambda * (t * 60)))
                
                # Because the result (fraction pelleted) must physically be between [1,0]
                result[result > 1] <- 1
@@ -52,7 +53,6 @@ pelleted <- function(t,
            
            # Fixed Angle -------------------------------------------------------
            fa = {
-               L <- rotor[["FA.diameter"]] * sin(pi / 180 * rotor[["FA.angle"]])
                shift <- (rcf * 980 * (10^-7 * d)^2 * rho * (t * 60)) / (18 * viscosity * L)
                result <- (2/pi) * (asin(shift) + shift * sqrt(1 - shift^2))
                

@@ -10,7 +10,7 @@ cutoff_d(t, rcf, rotor, vesicle.density = 1.15, solvent.density = 1,
 \arguments{
 \item{t}{time (s)}
 
-\item{rcf}{relative centrifugal force (x g)}
+\item{rcf}{relative centrifugal force}
 
 \item{rotor}{a rotor object}
 

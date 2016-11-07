@@ -32,6 +32,7 @@ sed_time <- function(d,
     rho <- vesicle.density - solvent.density
     rMax <- rotor[["R.max"]]
     rMin <- rotor[["R.min"]]
+    L <- rotor[["sed.L"]]
     
     # Do Calculation -----------------------------------------------------------
     switch(rotor[["type"]],
@@ -44,7 +45,6 @@ sed_time <- function(d,
            
            # Fixed Angle -------------------------------------------------------
            fa = {
-               L <- rotor[["FA.diameter"]] * sin(pi / 180 * rotor[["FA.angle"]])
                t <- (18 * viscosity * L) / (rcf * 980 * (10^-7 * d)^2 * rho) / 60
            })
     
