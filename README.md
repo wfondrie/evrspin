@@ -5,7 +5,6 @@ This R package is an implementation of the theoretical framework presented in Li
 The evrspin package is intended to help plan exosome and extracellular vesicle purifications by ultracentrifugation.
 
 
-TODO:
-- work on documentation
-- add rotors from original paper
-- validate using rotors from original paper
+TODO:  
+- work on documentation for cutoff\_d.R, pelleted.R, and sed\_time.R
+- Add more unit tests

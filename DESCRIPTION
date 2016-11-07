@@ -3,7 +3,7 @@ Title: Calculations for Extracellular Vesicle Sedimentation by Centrifugation
 Version: 0.0.0.9000
 Authors@R: person("Will", "Fondrie", email = "fondriew@gmail.com", 
                     role = c("aut", "cre"))
-Description: everspin is a tool intended to aid users in the planning of
+Description: evrspin is a tool intended to aid users in the planning of
     extracellularvesicle enrichments and purifications by centrifugation. The
     calculations presented by evrspin are an implementation of the theorectical
     framework formulated by Livshits et alin their Nature Communications
