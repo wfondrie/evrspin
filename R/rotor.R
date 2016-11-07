@@ -56,17 +56,17 @@ rotor <- function(model = "custom",
     
     # Parameter checking -------------------------------------------------------
     if(model == "custom") {
-        if(type != "sw" & type != "fa") stop("type argument must be either \"sw\" or \"fa\"." )
-        if(!is.numeric(R.min)) stop("R.min argument must be numeric.")
-        if(R.min < 0) stop("R.min argument cannot be less than 0.")
-        if(!is.numeric(R.max)) stop("R.max argument must be numeric.")
-        if(R.max <= 0) stop("R.max argument must be positive and numeric.")
-        if(R.max <= R.min) stop("R.max argument must be greater than R.min")
+        if(type != "sw" & type != "fa") stop("type must be either \"sw\" or \"fa\"." )
+        if(!is.numeric(R.min)) stop("R.min must be numeric.")
+        if(R.min < 0) stop("R.min cannot be less than 0.")
+        if(!is.numeric(R.max)) stop("R.max must be numeric.")
+        if(R.max <= 0) stop("R.max must be positive and numeric.")
+        if(R.max <= R.min) stop("R.max must be greater than R.min")
         
         if(type == "fa") {
-            if(!is.numeric(FA.angle)) stop("FA.angle argument must be numeric.")
+            if(!is.numeric(FA.angle)) stop("FA.angle must be numeric.")
             if(FA.angle > 90 | FA.angle < 0) stop("FA.angle must be between 0 and 90.")
-            if(!is.numeric(FA.diameter)) stop("FA.diameter argument must be numeric.")
+            if(!is.numeric(FA.diameter)) stop("FA.diameter must be numeric.")
             if(FA.diameter <= 0) stop("FA.diameter must be positive.")
         }
     }
@@ -168,7 +168,7 @@ rotor <- function(model = "custom",
            },
            
            # If neither "custom" nor any preset above:
-           stop("model argument does not match any preset rotors. Use list_rotors() to see preset models or use model = \"custom\" to specify your own.")
+           stop("model does not match any preset rotors. Use list_rotors() to see preset models or use model = \"custom\" to specify your own.")
     ) # end switch()
     
     # Calculate properties of rotors -------------------------------------------

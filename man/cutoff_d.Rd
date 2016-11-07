@@ -2,7 +2,7 @@
 % Please edit documentation in R/cutoff_d.R
 \name{cutoff_d}
 \alias{cutoff_d}
-\title{Calculate the maximum vesicle size to be fully sedimented}
+\title{Calculate the maximum vesicle size that is fully sedimented}
 \usage{
 cutoff_d(t, rcf, rotor, vesicle.density = 1.15, solvent.density = 1,
   viscosity = 0.0155)

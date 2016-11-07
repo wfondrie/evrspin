@@ -1,4 +1,4 @@
-#' Calculate the maximum vesicle size to be fully sedimented
+#' Calculate the maximum vesicle size that is fully sedimented
 #' 
 #' @description Calculates the maximum vesicle size that is completely sedimented at 
 #' a specified time and density at a specified rcf. Units are noted in parentheses
