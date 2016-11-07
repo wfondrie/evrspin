@@ -44,8 +44,8 @@ sed_time <- function(d,
            
            # Fixed Angle -------------------------------------------------------
            fa = {
-               L <- (rMax - rMin) * sin(pi / 180 * rotor[["FA.angle"]])
-               (18 * n * L) / (rcf * 980 * (10^-7 * d)^2 * rho) / 60
+               L <- rotor[["FA.diameter"]] * sin(pi / 180 * rotor[["FA.angle"]])
+               (18 * viscosity * L) / (rcf * 980 * (10^-7 * d)^2 * rho) / 60
            })
     
 }

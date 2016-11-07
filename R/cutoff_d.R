@@ -33,17 +33,21 @@ cutoff_d <- function(t,
     rMax <- rotor[["R.max"]]
     rMin <- rotor[["R.min"]]
     
+    # Do Calculations ----------------------------------------------------------
+    
     switch(rotor[["type"]],
            
            # Swinging Bucket ---------------------------------------------------
            sw = {
                w2 <- (2 * rcf) / (rMax + rMin) * 9800
-               sqrt(((18 * viscosity) / (w2 * (t * 60) * rho)) * log(rMax/rMin)) * 10^7
+               d <- sqrt(((18 * viscosity) / (w2 * (t * 60) * rho)) * log(rMax/rMin)) * 10^7
            },
            
            # Fixed Angle -------------------------------------------------------
            fa = {
-               L <- (rMax - rMin) * sin(pi / 180 * rotor[["FA.angle"]])
-               sqrt((18 * viscosity * L) / (rcf * 980 * t * 60 * rho)) * 10^7
+               L <- rotor[["FA.diameter"]] * sin(pi / 180 * rotor[["FA.angle"]])
+               d <- sqrt((18 * viscosity * L) / (rcf * 980 * t * 60 * rho)) * 10^7
            })
+    
+    return(d)
 }
