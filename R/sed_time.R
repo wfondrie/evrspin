@@ -39,13 +39,14 @@ sed_time <- function(d,
            # Swinging Bucket ---------------------------------------------------
            sw = {
                w2 <- (2 * rcf) / (rMax + rMin) * 9800
-               ((18 * viscosity) / (w2 * (10^-7 * d)^2 * rho)) * log(rMax/rMin) / 60
+               t <- ((18 * viscosity) / (w2 * (10^-7 * d)^2 * rho)) * log(rMax/rMin) / 60
            },
            
            # Fixed Angle -------------------------------------------------------
            fa = {
                L <- rotor[["FA.diameter"]] * sin(pi / 180 * rotor[["FA.angle"]])
-               (18 * viscosity * L) / (rcf * 980 * (10^-7 * d)^2 * rho) / 60
+               t <- (18 * viscosity * L) / (rcf * 980 * (10^-7 * d)^2 * rho) / 60
            })
     
+    return(t)
 }

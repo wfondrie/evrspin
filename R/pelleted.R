@@ -60,7 +60,5 @@ pelleted <- function(t,
                result[is.nan(result)] <- 1
            })
     
-
-    
     return(result)
 }
