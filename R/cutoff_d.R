@@ -1,19 +1,45 @@
-#' Calculate the maximum vesicle size that is fully sedimented
+#' Calculate the vesicle size cutoff
 #' 
 #' @description Calculates the maximum vesicle size that is completely sedimented at 
-#' a specified time and density at a specified rcf. Units are noted in parentheses
+#' a specified time and rcf. Units are noted in parentheses
 #' 
-#' @param t time (s)
+#' @param t time (min)
 #' @param rcf relative centrifugal force
 #' @param rotor a rotor object
 #' @param vesicle.density the vesicle density (g/cm^3)
 #' @param solvent.density the solvent density (g/cm^3)
 #' @param viscosity of the solvent (g/(cm*s))
 #' 
-
-
-# TODO:
-# - Add more documentation
+#' @details Calculates the maximum vesicle size that is fully sedimented in a 
+#' centrifugation run. This can be thought of as a vesicle size cufoff for complete
+#' sedimentation. 
+#' 
+#' The default value for \code{vesicle.density} is 1.15 g/cm^3,
+#' which is the most common exosome density in the literature. 
+#' 
+#' The default \code{solvent.density} is 1.00 g/cm^3 and the default 
+#' \code{viscosity} is 0.0155 g/(cm*s), which are respectively the density and 
+#' viscosity of pure water. 
+#' 
+#' 
+#' @return The cutoff vesicle size (nm)
+#' 
+#' @examples 
+#' # create a Beckman SW 40 Ti rotor object
+#' sw40 <- rotor("sw40")
+#' 
+#' cutoff_d(t = 60, rcf = 10000, sw40)
+#' cutoff_d(t = 60, rcf = 100000, sw40)
+#' 
+#' # Or use a vector for one argument
+#' 
+#' cutoff_d(t = 1:100, rcf = 10000, sw40)
+#' cutoff_d(t = 60, rcf = seq(100, 1000, by = 100), sw40)
+#' 
+#' # Arguments can be of length > 1
+#' cutoff_d(t = 1:100, rcf = 10000, sw40)
+#' cutoff_d(t = 60, rcf = seq(100, 1000, by = 100), sw40)
+#' cutoff_d(t = 1:10, rcf = seq(100, 1000, by = 100), sw40)
 
 cutoff_d <- function(t,
                      rcf,
@@ -23,18 +49,19 @@ cutoff_d <- function(t,
                      viscosity = 0.0155) {
     
     # Arguements Checks --------------------------------------------------------
-    if(!is.numeric(t) | t < 0) stop("t must be numeric and non-negative.")
-    if(!is.numeric(rcf) | rcf < 0) stop("rcf must be numeric and non-negative.")
+    if(!is.numeric(t) | sum(t < 0) != 0) stop("t must be numeric and non-negative.")
+    if(!is.numeric(rcf) | sum(rcf < 0) != 0) stop("rcf must be numeric and non-negative.")
     if(class(rotor) != "rotor") stop("rotor is not a rotor-class object. Use rotor() to create one.")
     if(!is.numeric(vesicle.density)) stop("vesicle.density must be numeric.")
     if(!is.numeric(solvent.density)) stop("solvent.density must be numeric.")
-    if(!is.numeric(viscosity) | viscosity < 0) stop("viscosity must be numeric and non-negative.")
+    if(sum(vesicle.density <= solvent.density) != 0) stop("vesicle.density must be greater than solvent.density.")
+    if(!is.numeric(viscosity) | sum(viscosity < 0) != 0) stop("viscosity must be numeric and non-negative.")
     
     # Assign variables ---------------------------------------------------------
     rho <- vesicle.density - solvent.density
-    if(rho <= 0) stop("vesicle.density must be greater than solvent.density")
     rMax <- rotor[["R.max"]]
     rMin <- rotor[["R.min"]]
+    rAve <- rotor[["R.ave"]]
     L <- rotor[["sed.L"]]
     
     # Do Calculations ----------------------------------------------------------
@@ -43,7 +70,7 @@ cutoff_d <- function(t,
            
            # Swinging Bucket ---------------------------------------------------
            sw = {
-               w2 <- (2 * rcf) / (rMax + rMin) * 9800
+               w2 <- rcf / rAve * 9800
                d <- sqrt(((18 * viscosity) / (w2 * (t * 60) * rho)) * log(rMax/rMin)) * 10^7
            },
            

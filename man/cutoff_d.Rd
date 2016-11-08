@@ -2,13 +2,13 @@
 % Please edit documentation in R/cutoff_d.R
 \name{cutoff_d}
 \alias{cutoff_d}
-\title{Calculate the maximum vesicle size that is fully sedimented}
+\title{Calculate the vesicle size cutoff}
 \usage{
 cutoff_d(t, rcf, rotor, vesicle.density = 1.15, solvent.density = 1,
   viscosity = 0.0155)
 }
 \arguments{
-\item{t}{time (s)}
+\item{t}{time (min)}
 
 \item{rcf}{relative centrifugal force}
 
@@ -20,8 +20,40 @@ cutoff_d(t, rcf, rotor, vesicle.density = 1.15, solvent.density = 1,
 
 \item{viscosity}{of the solvent (g/(cm*s))}
 }
+\value{
+The cutoff vesicle size (nm)
+}
 \description{
 Calculates the maximum vesicle size that is completely sedimented at 
-a specified time and density at a specified rcf. Units are noted in parentheses
+a specified time and rcf. Units are noted in parentheses
+}
+\details{
+Calculates the maximum vesicle size that is fully sedimented in a 
+centrifugation run. This can be thought of as a vesicle size cufoff for complete
+sedimentation. 
+
+The default value for \code{vesicle.density} is 1.15 g/cm^3,
+which is the most common exosome density in the literature. 
+
+The default \code{solvent.density} is 1.00 g/cm^3 and the default 
+\code{viscosity} is 0.0155 g/(cm*s), which are respectively the density and 
+viscosity of pure water.
+}
+\examples{
+# create a Beckman SW 40 Ti rotor object
+sw40 <- rotor("sw40")
+
+cutoff_d(t = 60, rcf = 10000, sw40)
+cutoff_d(t = 60, rcf = 100000, sw40)
+
+# Or use a vector for one argument
+
+cutoff_d(t = 1:100, rcf = 10000, sw40)
+cutoff_d(t = 60, rcf = seq(100, 1000, by = 100), sw40)
+
+# Arguments can be of length > 1
+cutoff_d(t = 1:100, rcf = 10000, sw40)
+cutoff_d(t = 60, rcf = seq(100, 1000, by = 100), sw40)
+cutoff_d(t = 1:10, rcf = seq(100, 1000, by = 100), sw40)
 }
 
