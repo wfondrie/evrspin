@@ -26,7 +26,20 @@
 #' 
 #' @return The fraction of a vesicle population pelleted. Is always numeric 
 #' between [0, 1].
-
+#' 
+#' @examples 
+#' # create a Beckman SW 40 Ti rotor object
+#' sw40 <- rotor("sw40")
+#' 
+#' pelleted(t = 60, d = 100, rcf = 10000, sw40)
+#' pelleted(t = 60, d = 100, rcf = 100000, sw40)
+#' 
+#' 
+#' # Arguments can be of length > 1
+#' pelleted(t = 1:100, d = 100, rcf = 10000, sw40)
+#' #' pelleted(t = 60, d = 100:110, rcf = 10000, sw40)
+#' pelleted(t = 60, d = 100, rcf = seq(100, 1000, by = 100), sw40)
+#' pelleted(t = 1:10, d = 100:110, rcf = seq(100, 1000, by = 100), sw40)
 
 pelleted <- function(t, 
                      d, 
