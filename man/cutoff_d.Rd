@@ -46,10 +46,6 @@ sw40 <- rotor("sw40")
 cutoff_d(t = 60, rcf = 10000, sw40)
 cutoff_d(t = 60, rcf = 100000, sw40)
 
-# Or use a vector for one argument
-
-cutoff_d(t = 1:100, rcf = 10000, sw40)
-cutoff_d(t = 60, rcf = seq(100, 1000, by = 100), sw40)
 
 # Arguments can be of length > 1
 cutoff_d(t = 1:100, rcf = 10000, sw40)
