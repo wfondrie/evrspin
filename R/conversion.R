@@ -20,6 +20,7 @@
 #' @section Warning: Check your owner's manual for the maximum rpm and rcf
 #' ratings of your rotor before proceeding.
 #'
+#' @export
 
 rcf2rpm <- function(rcf, rotor) {
 
@@ -35,6 +36,8 @@ rcf2rpm <- function(rcf, rotor) {
 
 
 #' @rdname rcf2rpm
+#' @export
+
 rpm2rcf <- function(rpm, rotor) {
 
   # Check Arguments ------------------------------------------------------------

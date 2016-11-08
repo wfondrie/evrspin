@@ -6,11 +6,11 @@ test_that("rotor() creates rotor objects", {
     expect_match(class(rotor(model = "tla110")), "rotor")
     expect_match(class(rotor("custom", "sw", 5, 10)), "rotor")
     expect_match(class(rotor("custom", "fa", 5, 10, 30, 10)), "rotor")
-}) 
+})
 
-test_that("Argument errors for all rotors") {
+test_that("Argument errors for all rotors", {
     expect_error(rotor(model = "a"), "model does not match")
-}
+})
 
 test_that("Argument errors for all custom rotors", {
     expect_error(rotor(model = "custom", type = "a"), "type must be either")
@@ -32,7 +32,7 @@ test_that("sed.L and R.ave calculations are correct", {
     # Swinging Bucket
     expect_equal(rotor("sw40")[["sed.L"]], 92.1)
     expect_equal(round(rotor("sw40")[["R.ave"]], 1), 112.8)
-    
+
     # Fixed Angle
     expect_equal(round(rotor("type45")[["sed.L"]], 1), 41.6)
     expect_equal(round(rotor("type45")[["R.ave"]] + 0.01, 1), 69.9)

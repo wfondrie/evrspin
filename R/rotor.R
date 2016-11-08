@@ -3,7 +3,7 @@
 #' @description Constructor function to create new rotor class objects.
 #'
 #' @param model Use a custom or preset rotor.
-#' Setting model to "custom" allows use of the other parameters. Use 
+#' Setting model to "custom" allows use of the other parameters. Use
 #' \code{list_rotors()} to see preset model choices.
 #'
 #' @param type Swinging-bucket ("sw") or fixed-angle ("fa").
@@ -26,26 +26,27 @@
 #' While a user may specify parameters individually using \code{model = "custom"}, there
 #' are a number of preset rotors that can be selected through the \code{model} parameter.
 #' Use \code{list_rotors()} to return a dataframe containing the preset rotors.
-#' Note that if \code{model != "custom"}, all other parameters are overidden by 
-#' the preset values. 
+#' Note that if \code{model != "custom"}, all other parameters are overidden by
+#' the preset values.
 #'
-#'@examples 
+#'@examples
 #' # List preset rotors
 #' list_rotors()
-#' 
+#'
 #' # Create a Beckman SW 40 Ti rotor object
 #' rotor(model = "sw40")
-#' 
+#'
 #' # Create your own swinging-bucket rotor object.
 #' # Note that FA.angle and FA.diameter are not needed for swinging-bucket rotors.
 #' rotor(model = "custom", type = "sw", R.min = 10, R.max = 25)
-#' 
+#'
 #' # Create your own fixed-angle rotor object.
 #' rotor(model = "custom", type = "fa", R.min = 10, R.max = 15, FA.angle = 30, FA.diameter = 10)
-#' 
+#'
 #' # Other parameters are overidden if model != "custom"
 #' rotor(model = "sw40", type = "fa", R.min = 10, R.max = 15, FA.angle = 30, FA.diameter = 10)
-#' 
+#'
+#' @export
 
 rotor <- function(model = "custom",
                   type = "sw",
@@ -53,7 +54,7 @@ rotor <- function(model = "custom",
                   R.max,
                   FA.angle = NA,
                   FA.diameter = NA) {
-    
+
     # Argument Checks ----------------------------------------------------------
     if(model == "custom") {
         if(type != "sw" & type != "fa") stop("type must be either \"sw\" or \"fa\"." )
@@ -62,7 +63,7 @@ rotor <- function(model = "custom",
         if(!is.numeric(R.max)) stop("R.max must be numeric.")
         if(R.max <= 0) stop("R.max must be positive and numeric.")
         if(R.max <= R.min) stop("R.max must be greater than R.min")
-        
+
         if(type == "fa") {
             if(!is.numeric(FA.angle)) stop("FA.angle must be numeric.")
             if(FA.angle > 90 | FA.angle < 0) stop("FA.angle must be between 0 and 90.")
@@ -70,8 +71,8 @@ rotor <- function(model = "custom",
             if(FA.diameter <= 0) stop("FA.diameter must be positive.")
         }
     }
-    
-    
+
+
     # Custom Rotor -------------------------------------------------------------
     switch(model,
            custom = {
@@ -82,8 +83,8 @@ rotor <- function(model = "custom",
                              FA.angle = FA.angle,
                              FA.diameter = FA.diameter)
            },
-           
-           
+
+
            # Swinging Bucket Rotors --------------------------------------------
            sw41 = {
                rotor <- list(model = "sw41",
@@ -93,7 +94,7 @@ rotor <- function(model = "custom",
                              FA.angle = NA,
                              FA.diameter = NA)
            },
-           
+
            sw40 = {
                rotor <- list(model = "sw40",
                              type = "sw",
@@ -102,7 +103,7 @@ rotor <- function(model = "custom",
                              FA.angle = NA,
                              FA.diameter = NA)
            },
-           
+
            sw28 = {
                rotor <- list(model = "sw28",
                              type = "sw",
@@ -111,7 +112,7 @@ rotor <- function(model = "custom",
                              FA.angle = NA,
                              FA.diameter = NA)
            },
-           
+
            mls50 = {
                rotor <- list(model = "mls50",
                              type = "sw",
@@ -120,7 +121,7 @@ rotor <- function(model = "custom",
                              FA.angle = NA,
                              FA.diameter = NA)
            },
-           
+
            # Fixed-Angle Rotors ------------------------------------------------
            type45 = {
                rotor <- list(model = "type45",
@@ -130,7 +131,7 @@ rotor <- function(model = "custom",
                              FA.angle = 24,
                              FA.diameter = 38)
            },
-           
+
            type60 = {
                rotor <- list(model = "type60",
                              type = "fa",
@@ -139,7 +140,7 @@ rotor <- function(model = "custom",
                              FA.angle = 23.5,
                              FA.diameter = 25)
            },
-           
+
            type70 = {
                rotor <- list(model = "type70",
                              type = "fa",
@@ -148,7 +149,7 @@ rotor <- function(model = "custom",
                              FA.angle = 23,
                              FA.diameter = 15)
            },
-           
+
            f452415 = {
                rotor <- list(model = "f452415",
                              type = "fa",
@@ -157,7 +158,7 @@ rotor <- function(model = "custom",
                              FA.angle = 45,
                              FA.diameter = 11)
            },
-           
+
            tla110 = {
                rotor <- list(model = "tla110",
                              type = "fa",
@@ -166,13 +167,13 @@ rotor <- function(model = "custom",
                              FA.angle = 28,
                              FA.diameter = 13)
            },
-           
+
            # If neither "custom" nor any preset above:
            stop("model does not match any preset rotors. Use list_rotors() to see preset models or use model = \"custom\" to specify your own.")
     ) # end switch()
-    
+
     # Calculate properties of rotors -------------------------------------------
-    
+
     # Sedimentation Length
     switch(rotor[["type"]],
            sw = {
@@ -181,17 +182,19 @@ rotor <- function(model = "custom",
            fa = {
                sed.L <- rotor[["FA.diameter"]] / cos(pi / 180 * rotor[["FA.angle"]])
            })
-    
+
     # Average Radius
     R.ave <- (rotor[["R.max"]] + rotor[["R.min"]]) / 2
-    
-    rotor <- structure(append(rotor, list(R.ave = R.ave, sed.L = sed.L), 4), 
+
+    rotor <- structure(append(rotor, list(R.ave = R.ave, sed.L = sed.L), 4),
                        class = "rotor")
     return(rotor)
 }
 
 
 #' @rdname rotor
+#' @export
+#'
 list_rotors <- function() {
     return(data.frame(model = c("sw41",
                                 "sw40",
@@ -211,7 +214,7 @@ list_rotors <- function() {
                                "Beckman Type 70 Ti",
                                "Eppendorf F-45-24-15",
                                "Beckman TLA 110"),
-                      type = c(rep("swinging-bucket (sw)", 4), 
+                      type = c(rep("swinging-bucket (sw)", 4),
                                rep("fixed-angle (fa)", 5))
     )
     )

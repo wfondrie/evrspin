@@ -57,5 +57,6 @@ pelleted(t = 1:100, d = 100, rcf = 10000, sw40)
 pelleted(t = 60, d = 100:110, rcf = 10000, sw40)
 pelleted(t = 60, d = 100, rcf = seq(100, 1000, by = 100), sw40)
 pelleted(t = 1:10, d = 100:110, rcf = seq(100, 1000, by = 100), sw40)
+
 }
 

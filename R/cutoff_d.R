@@ -36,6 +36,8 @@
 #' cutoff_d(t = 1:100, rcf = 10000, sw40)
 #' cutoff_d(t = 60, rcf = seq(100, 1000, by = 100), sw40)
 #' cutoff_d(t = 1:10, rcf = seq(100, 1000, by = 100), sw40)
+#'
+#' @export
 
 cutoff_d <- function(t,
                      rcf,

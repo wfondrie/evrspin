@@ -52,5 +52,6 @@ sed_time(d = 100, rcf = 100000, sw40)
 sed_time(d = 100:110, rcf = 10000, sw40)
 sed_time(d = 100, rcf = seq(100, 1000, by = 100), sw40)
 sed_time(d = 100:110, rcf = seq(100, 1000, by = 100), sw40)
+
 }
 

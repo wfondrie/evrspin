@@ -3,12 +3,12 @@ Title: Calculations for Extracellular Vesicle Sedimentation by Centrifugation
 Version: 0.0.0.9000
 Authors@R: person("Will", "Fondrie", email = "fondriew@gmail.com", 
                     role = c("aut", "cre"))
-Description: evrspin is a tool intended to aid users in the planning of
-    extracellularvesicle enrichments and purifications by centrifugation. The
+Description: The evrspin package is a tool intended to aid users in the planning of
+    extracellular vesicle enrichments and purifications by centrifugation. The
     calculations presented by evrspin are an implementation of the theorectical
-    framework formulated by Livshits et alin their Nature Communications
-    publication, "Isolation of exosomes by differential centrifugation:
-    Theoretical analysis of a commonly used protocol"
+    framework formulated by Livshits et al in their 2016 Nature Communications
+    publication titled, "Isolation of exosomes by differential centrifugation:
+    Theoretical analysis of a commonly used protocol".
 Depends:
     R (>= 3.3.0)
 License: GPL-3

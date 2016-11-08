@@ -12,7 +12,7 @@ list_rotors()
 }
 \arguments{
 \item{model}{Use a custom or preset rotor.
-Setting model to "custom" allows use of the other parameters. Use 
+Setting model to "custom" allows use of the other parameters. Use
 \code{list_rotors()} to see preset model choices.}
 
 \item{type}{Swinging-bucket ("sw") or fixed-angle ("fa").}
@@ -38,7 +38,7 @@ functions.
 While a user may specify parameters individually using \code{model = "custom"}, there
 are a number of preset rotors that can be selected through the \code{model} parameter.
 Use \code{list_rotors()} to return a dataframe containing the preset rotors.
-Note that if \code{model != "custom"}, all other parameters are overidden by 
+Note that if \code{model != "custom"}, all other parameters are overidden by
 the preset values.
 }
 \examples{

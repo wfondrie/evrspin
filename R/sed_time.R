@@ -36,6 +36,8 @@
 #' sed_time(d = 100:110, rcf = 10000, sw40)
 #' sed_time(d = 100, rcf = seq(100, 1000, by = 100), sw40)
 #' sed_time(d = 100:110, rcf = seq(100, 1000, by = 100), sw40)
+#'
+#' @export
 
 
 
@@ -48,12 +50,13 @@ sed_time <- function(d,
                      viscosity = 0.0155) {
 
     # Arguments Checks ---------------------------------------------------------
-    if(!is.numeric(d)) stop("d must be numeric.")
-    if(!is.numeric(rcf)) stop("rcf argument must be numeric.")
-    if(class(rotor) != "rotor") stop("rotor argument is not a rotor-class object. Use rotor() to create one.")
-    if(!is.numeric(vesicle.density)) stop("vesicle.density must be numeric")
-    if(!is.numeric(solvent.density)) stop("solvent.density must be numeric")
-    if(!is.numeric(viscosity)) stop("viscosity must be numeric")
+    if(!is.numeric(d) | sum(d < 0) != 0) stop("d must be numeric and non-negative.")
+    if(!is.numeric(rcf) | sum(rcf < 0) != 0) stop("rcf must be numeric and non-negative.")
+    if(class(rotor) != "rotor") stop("rotor is not a rotor-class object. Use rotor() to create one.")
+    if(!is.numeric(vesicle.density)) stop("vesicle.density must be numeric.")
+    if(!is.numeric(solvent.density)) stop("solvent.density must be numeric.")
+    if(sum(vesicle.density <= solvent.density) != 0) stop("vesicle.density must be greater than solvent.density.")
+    if(!is.numeric(viscosity) | sum(viscosity < 0) != 0) stop("viscosity must be numeric and non-negative.")
 
     # Assign variables ---------------------------------------------------------
     rho <- vesicle.density - solvent.density
@@ -72,7 +75,7 @@ sed_time <- function(d,
 
            # Fixed Angle -------------------------------------------------------
            fa = {
-               t <- (18 * viscosity * L) / (rcf * 980 * (10^-7 * d)^2 * rho) / 60
+               t <- (18 * viscosity * L) / (rcf * 9800 * (10^-7 * d)^2 * rho) / 60
            })
 
     return(t)
