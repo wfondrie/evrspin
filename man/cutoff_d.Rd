@@ -8,17 +8,17 @@ cutoff_d(t, rcf, rotor, vesicle.density = 1.15, solvent.density = 1,
   viscosity = 0.0155)
 }
 \arguments{
-\item{t}{time (min)}
+\item{t}{The centrifugation time (min).}
 
-\item{rcf}{relative centrifugal force}
+\item{rcf}{The relative centrifugal force.}
 
-\item{rotor}{a rotor object}
+\item{rotor}{A rotor object, created with \code(rotor()).}
 
-\item{vesicle.density}{the vesicle density (g/cm^3)}
+\item{vesicle.density}{The vesicle density (g/cm^3).}
 
-\item{solvent.density}{the solvent density (g/cm^3)}
+\item{solvent.density}{The solvent density (g/cm^3).}
 
-\item{viscosity}{of the solvent (g/(cm*s))}
+\item{viscosity}{The viscosity of the solvent (g/(cm*s)).}
 }
 \value{
 The cutoff vesicle size (nm)

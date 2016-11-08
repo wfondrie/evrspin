@@ -3,12 +3,12 @@
 #' @description Calculates the maximum vesicle size that is completely sedimented at 
 #' a specified time and rcf. Units are noted in parentheses
 #' 
-#' @param t time (min)
-#' @param rcf relative centrifugal force
-#' @param rotor a rotor object
-#' @param vesicle.density the vesicle density (g/cm^3)
-#' @param solvent.density the solvent density (g/cm^3)
-#' @param viscosity of the solvent (g/(cm*s))
+#' @param t The centrifugation time (min).
+#' @param rcf The relative centrifugal force.
+#' @param rotor A rotor object, created with \code(rotor()).
+#' @param vesicle.density The vesicle density (g/cm^3).
+#' @param solvent.density The solvent density (g/cm^3).
+#' @param viscosity The viscosity of the solvent (g/(cm*s)).
 #' 
 #' @details Calculates the maximum vesicle size that is fully sedimented in a 
 #' centrifugation run. This can be thought of as a vesicle size cufoff for complete
