@@ -6,7 +6,7 @@
 #' @param t The centrifugation time (min).
 #' @param d The vesicle diameter (nm).
 #' @param rcf The relative centrifugal force.
-#' @param rotor A rotor object, created with \code(rotor()).
+#' @param rotor A rotor object, created with \code{rotor()}.
 #' @param vesicle.density The vesicle density (g/cm^3).
 #' @param solvent.density The solvent density (g/cm^3).
 #' @param viscosity The viscosity of the solvent (g/(cm*s)).
@@ -37,7 +37,7 @@
 #'
 #' # Arguments can be of length > 1
 #' pelleted(t = 1:100, d = 100, rcf = 10000, sw40)
-#' #' pelleted(t = 60, d = 100:110, rcf = 10000, sw40)
+#' pelleted(t = 60, d = 100:110, rcf = 10000, sw40)
 #' pelleted(t = 60, d = 100, rcf = seq(100, 1000, by = 100), sw40)
 #' pelleted(t = 1:10, d = 100:110, rcf = seq(100, 1000, by = 100), sw40)
 

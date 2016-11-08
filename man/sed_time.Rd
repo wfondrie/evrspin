@@ -2,26 +2,55 @@
 % Please edit documentation in R/sed_time.R
 \name{sed_time}
 \alias{sed_time}
-\title{Calculate the time to sediment a vesicle}
+\title{Calculate the time to completely sediment a vesicle}
 \usage{
 sed_time(d, rcf, rotor, vesicle.density = 1.15, solvent.density = 1,
   viscosity = 0.0155)
 }
 \arguments{
-\item{d}{vesicle diameter (nm)}
+\item{d}{The vesicle diameter (nm).}
 
-\item{rcf}{relative centrifugal force (x g)}
+\item{rcf}{The relative centrifugal force.}
 
-\item{rotor}{a rotor object}
+\item{rotor}{A rotor object, created with \code{rotor()}.}
 
-\item{vesicle.density}{the vesicle density (g/cm^3)}
+\item{vesicle.density}{The vesicle density (g/cm^3).}
 
-\item{solvent.density}{the solvent density (g/cm^3)}
+\item{solvent.density}{The solvent density (g/cm^3).}
 
-\item{viscosity}{of the solvent (g/(cm*s))}
+\item{viscosity}{The viscosity of the solvent (g/(cm*s)).}
+}
+\value{
+The time to completely sediment a vesicle population (min).
 }
 \description{
-Calculates the time needed for complete sedimentation of a specified
-size and density at a specified rcf. Units are noted in parentheses.
+Calculates the time needed for complete sedimentation of vesicles with specified
+size and rcf. Units are noted in parentheses.
+}
+\details{
+Calculates the centrifugation time needed to completely sediment a
+vesicle population at the provided rcf. This is the theoretical maximum time
+for a vesicle to traverse the sedimentation path length or \code{sed.L} of a
+rotor object.
+
+The default value for \code{vesicle.density} is 1.15 g/cm^3,
+which is the most common exosome density in the literature.
+
+The default \code{solvent.density} is 1.00 g/cm^3 and the default
+\code{viscosity} is 0.0155 g/(cm*s), which are respectively the density and
+viscosity of pure water.
+}
+\examples{
+# create a Beckman SW 40 Ti rotor object
+sw40 <- rotor("sw40")
+
+sed_time(d = 100, rcf = 10000, sw40)
+sed_time(d = 100, rcf = 100000, sw40)
+
+
+# Arguments can be of length > 1
+sed_time(d = 100:110, rcf = 10000, sw40)
+sed_time(d = 100, rcf = seq(100, 1000, by = 100), sw40)
+sed_time(d = 100:110, rcf = seq(100, 1000, by = 100), sw40)
 }
 

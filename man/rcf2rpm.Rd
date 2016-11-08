@@ -10,14 +10,14 @@ rcf2rpm(rcf, rotor)
 rpm2rcf(rpm, rotor)
 }
 \arguments{
-\item{rcf}{relative centrifugal force}
+\item{rcf}{The relative centrifugal force.}
 
-\item{rotor}{a rotor object}
+\item{rotor}{A rotor object, created with \code{rotor()}.}
 
-\item{rpm}{revolutions per minute}
+\item{rpm}{The revolutions per minute.}
 }
 \value{
-\code{rcf2rpm} returns the rpm equilavent to the specified rotor and 
+\code{rcf2rpm} returns the rpm equilavent to the specified rotor and
 rcf. Likewise, \code{rpm2rcf} returns the rcf for the specified rotor and rpm.
 }
 \description{

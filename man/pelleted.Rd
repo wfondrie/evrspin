@@ -8,23 +8,54 @@ pelleted(t, d, rcf, rotor, vesicle.density = 1.15, solvent.density = 1,
   viscosity = 0.0155)
 }
 \arguments{
-\item{t}{time (s)}
+\item{t}{The centrifugation time (min).}
 
-\item{d}{vesicle diameter (nm)}
+\item{d}{The vesicle diameter (nm).}
 
-\item{rcf}{relative centrifugal force}
+\item{rcf}{The relative centrifugal force.}
 
-\item{rotor}{a rotor object}
+\item{rotor}{A rotor object, created with \code{rotor()}.}
 
-\item{vesicle.density}{the vesicle density (g/cm^3)}
+\item{vesicle.density}{The vesicle density (g/cm^3).}
 
-\item{solvent.density}{the solvent density (g/cm^3)}
+\item{solvent.density}{The solvent density (g/cm^3).}
 
-\item{viscosity}{of the solvent (g/(cm*s))}
+\item{viscosity}{The viscosity of the solvent (g/(cm*s)).}
+}
+\value{
+The fraction of a vesicle population pelleted. Is always numeric
+between [0, 1].
 }
 \description{
-Calculates the fraction pelleted for a vesicle of a specified 
-diameter and density when centrifuged at a specified rcf for a specified time. 
-Units are noted in parentheses.
+Calculates the fraction pelleted for a vesicle of a specified
+diameter and rcf for a specified time. Units are noted in parentheses.
+}
+\details{
+Calculates the fraction of a vesicle population that is pelleted
+during a cetrifugation run at the specified time and rcf. Though the original
+equation allows for fractions greater than 1 (for swinging bucket rotors) or
+may become undefined (for fixed-angle rotors) the maximum value \code{pelleted()}
+will return is 1 due to the physical meaning of 100% sedimentation.
+
+The default value for \code{vesicle.density} is 1.15 g/cm^3,
+which is the most common exosome density in the literature.
+
+The default \code{solvent.density} is 1.00 g/cm^3 and the default
+\code{viscosity} is 0.0155 g/(cm*s), which are respectively the density and
+viscosity of pure water.
+}
+\examples{
+# create a Beckman SW 40 Ti rotor object
+sw40 <- rotor("sw40")
+
+pelleted(t = 60, d = 100, rcf = 10000, sw40)
+pelleted(t = 60, d = 100, rcf = 100000, sw40)
+
+
+# Arguments can be of length > 1
+pelleted(t = 1:100, d = 100, rcf = 10000, sw40)
+pelleted(t = 60, d = 100:110, rcf = 10000, sw40)
+pelleted(t = 60, d = 100, rcf = seq(100, 1000, by = 100), sw40)
+pelleted(t = 1:10, d = 100:110, rcf = seq(100, 1000, by = 100), sw40)
 }
 

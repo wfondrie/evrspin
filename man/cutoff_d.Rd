@@ -12,7 +12,7 @@ cutoff_d(t, rcf, rotor, vesicle.density = 1.15, solvent.density = 1,
 
 \item{rcf}{The relative centrifugal force.}
 
-\item{rotor}{A rotor object, created with \code(rotor()).}
+\item{rotor}{A rotor object, created with \code{rotor()}.}
 
 \item{vesicle.density}{The vesicle density (g/cm^3).}
 
@@ -24,19 +24,19 @@ cutoff_d(t, rcf, rotor, vesicle.density = 1.15, solvent.density = 1,
 The cutoff vesicle size (nm)
 }
 \description{
-Calculates the maximum vesicle size that is completely sedimented at 
+Calculates the maximum vesicle size that is completely sedimented at
 a specified time and rcf. Units are noted in parentheses
 }
 \details{
-Calculates the maximum vesicle size that is fully sedimented in a 
+Calculates the maximum vesicle size that is fully sedimented in a
 centrifugation run. This can be thought of as a vesicle size cufoff for complete
-sedimentation. 
+sedimentation.
 
 The default value for \code{vesicle.density} is 1.15 g/cm^3,
-which is the most common exosome density in the literature. 
+which is the most common exosome density in the literature.
 
-The default \code{solvent.density} is 1.00 g/cm^3 and the default 
-\code{viscosity} is 0.0155 g/(cm*s), which are respectively the density and 
+The default \code{solvent.density} is 1.00 g/cm^3 and the default
+\code{viscosity} is 0.0155 g/(cm*s), which are respectively the density and
 viscosity of pure water.
 }
 \examples{
