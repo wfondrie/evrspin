@@ -1,19 +1,31 @@
 #' Calculate the fraction pelleted for a vesicle size
 #' 
 #' @description Calculates the fraction pelleted for a vesicle of a specified 
-#' diameter and density when centrifuged at a specified rcf for a specified time. 
-#' Units are noted in parentheses.
+#' diameter and rcf for a specified time. Units are noted in parentheses.
 #' 
-#' @param t time (s)
-#' @param d vesicle diameter (nm)
-#' @param rcf relative centrifugal force
-#' @param rotor a rotor object
-#' @param vesicle.density the vesicle density (g/cm^3)
-#' @param solvent.density the solvent density (g/cm^3)
-#' @param viscosity of the solvent (g/(cm*s))
-
-# TODO:
-# - add documentation
+#' @param t The centrifugation time (min).
+#' @param d The vesicle diameter (nm).
+#' @param rcf The relative centrifugal force.
+#' @param rotor A rotor object, created with \code(rotor()).
+#' @param vesicle.density The vesicle density (g/cm^3).
+#' @param solvent.density The solvent density (g/cm^3).
+#' @param viscosity The viscosity of the solvent (g/(cm*s)).
+#' 
+#' @details Calculates the fraction of a vesicle population that is pelleted
+#' during a cetrifugation run at the specified time and rcf. Though the original
+#' equation allows for fractions greater than 1 (for swinging bucket rotors) or 
+#' may become undefined (for fixed-angle rotors) the maximum value \code{pelleted()}
+#' will return is 1 due to the physical meaning of 100% sedimentation. 
+#' 
+#' The default value for \code{vesicle.density} is 1.15 g/cm^3,
+#' which is the most common exosome density in the literature. 
+#' 
+#' The default \code{solvent.density} is 1.00 g/cm^3 and the default 
+#' \code{viscosity} is 0.0155 g/(cm*s), which are respectively the density and 
+#' viscosity of pure water. 
+#' 
+#' @return The fraction of a vesicle population pelleted. Is always numeric 
+#' between [0, 1].
 
 
 pelleted <- function(t, 
@@ -25,13 +37,14 @@ pelleted <- function(t,
                      viscosity = 0.0155){
     
     # Arguements Checks --------------------------------------------------------
-    if(!is.numeric(t)) stop("t argument must be numeric.")
-    if(!is.numeric(d)) stop("d argument must be numeric.")
-    if(!is.numeric(rcf)) stop("rcf argument must be numeric.")
-    if(class(rotor) != "rotor") stop("rotor argument is not a rotor-class object. Use rotor() to create one.")
-    if(!is.numeric(vesicle.density)) stop("vesicle.density argument must be numeric.")
-    if(!is.numeric(solvent.density)) stop("solvent.density argument must be numeric.")
-    if(!is.numeric(viscosity)) stop("viscosity argument must be numeric.")
+    if(!is.numeric(t) | sum(t < 0) != 0) stop("t must be numeric and non-negative.")
+    if(!is.numeric(d) | sum(d < 0) != 0) stop("d must be numeric and non-negative.")
+    if(!is.numeric(rcf) | sum(rcf < 0) != 0) stop("rcf must be numeric and non-negative.")
+    if(class(rotor) != "rotor") stop("rotor is not a rotor-class object. Use rotor() to create one.")
+    if(!is.numeric(vesicle.density)) stop("vesicle.density must be numeric.")
+    if(!is.numeric(solvent.density)) stop("solvent.density must be numeric.")
+    if(sum(vesicle.density <= solvent.density) != 0) stop("vesicle.density must be greater than solvent.density.")
+    if(!is.numeric(viscosity) | sum(viscosity < 0) != 0) stop("viscosity must be numeric and non-negative.")
     
     # Assign variables ---------------------------------------------------------
     rho <- vesicle.density - solvent.density
