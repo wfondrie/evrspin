@@ -6,5 +6,5 @@ The evrspin package is intended to help plan exosome and extracellular vesicle p
 
 
 TODO:  
-- work on documentation for cutoff\_d.R, pelleted.R, and sed\_time.R
+- work on documentation for pelleted.R, and sed\_time.R
 - Add more unit tests
