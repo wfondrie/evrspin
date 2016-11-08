@@ -72,7 +72,7 @@ cutoff_d <- function(t,
            
            # Fixed Angle -------------------------------------------------------
            fa = {
-               d <- sqrt((18 * viscosity * L) / (rcf * 980 * t * 60 * rho)) * 10^7
+               d <- sqrt((18 * viscosity * L) / (rcf * 9800 * t * 60 * rho)) * 10^7
            })
     
     return(d)
