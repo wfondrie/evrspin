@@ -36,7 +36,7 @@ pelleted <- function(t,
                      solvent.density = 1.00, 
                      viscosity = 0.0155){
     
-    # Arguements Checks --------------------------------------------------------
+    # Arguments Checks ---------------------------------------------------------
     if(!is.numeric(t) | sum(t < 0) != 0) stop("t must be numeric and non-negative.")
     if(!is.numeric(d) | sum(d < 0) != 0) stop("d must be numeric and non-negative.")
     if(!is.numeric(rcf) | sum(rcf < 0) != 0) stop("rcf must be numeric and non-negative.")

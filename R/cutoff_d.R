@@ -44,7 +44,7 @@ cutoff_d <- function(t,
                      solvent.density = 1.00, 
                      viscosity = 0.0155) {
     
-    # Arguements Checks --------------------------------------------------------
+    # Argument Checks ----------------------------------------------------------
     if(!is.numeric(t) | sum(t < 0) != 0) stop("t must be numeric and non-negative.")
     if(!is.numeric(rcf) | sum(rcf < 0) != 0) stop("rcf must be numeric and non-negative.")
     if(class(rotor) != "rotor") stop("rotor is not a rotor-class object. Use rotor() to create one.")

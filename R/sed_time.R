@@ -20,7 +20,7 @@ sed_time <- function(d,
                      solvent.density = 1.00, 
                      viscosity = 0.0155) {
     
-    # Arguements Checks --------------------------------------------------------
+    # Arguments Checks ---------------------------------------------------------
     if(!is.numeric(d)) stop("d must be numeric.")
     if(!is.numeric(rcf)) stop("rcf argument must be numeric.")
     if(class(rotor) != "rotor") stop("rotor argument is not a rotor-class object. Use rotor() to create one.")

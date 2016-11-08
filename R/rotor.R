@@ -54,7 +54,7 @@ rotor <- function(model = "custom",
                   FA.angle = NA,
                   FA.diameter = NA) {
     
-    # Parameter checking -------------------------------------------------------
+    # Argument Checks ----------------------------------------------------------
     if(model == "custom") {
         if(type != "sw" & type != "fa") stop("type must be either \"sw\" or \"fa\"." )
         if(!is.numeric(R.min)) stop("R.min must be numeric.")
