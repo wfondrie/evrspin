@@ -9,9 +9,9 @@ Currently evrspin is in its first pre-release (v0.1.0). During this time, please
 Until full release, to give the evrspin a whirl:
 ```r
 # if you don't already have devtools installed
-intall.packages("devtools")
+install.packages("devtools")
 
-install_github("wfondrie/evrspin")
+devtools::install_github("wfondrie/evrspin")
 ```
 
 Some things I'm still working on:  
